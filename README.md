@@ -13,7 +13,13 @@ If you would like waycorner to be available on your distro's package manager, fe
 ### Arch User Repository (AUR)
 
 ```zsh
-yay -S waycorner
+paru -S waycorner
+```
+
+### Cargo (crates.io)
+
+```zsh
+cargo install waycorner --locked
 ```
 
 ### Manually
@@ -21,7 +27,7 @@ yay -S waycorner
 ```zsh
 git clone git@github.com:AndreasBackx/waycorner.git
 cd waycorner
-cargo install --path .
+cargo install --path . --locked
 ```
 
 ## Configuration
@@ -30,8 +36,14 @@ Default configuration location is `~/.config/waycorner/config.toml`, this needs 
 
 ```toml
 [left]
-# Shell command to execute when hotcorner is triggered.
-command = "lock"  # required
+# Shell commands to execute when hotcorner is triggered,
+# at least one is required.
+
+# Command to run when cursor enters hotcorner.
+# `command` is an alias for `enter_command`.
+enter_command = [ "notify-send", "enter" ]
+# Command to run when cursor exits hotcorner.
+exit_command = [ "notify-send", "exit" ]
 
 # Locations of the hot corners.
 # Options: top_left, top_right, bottom_right, and bottom_left.
